@@ -49,7 +49,13 @@
                 @foreach ($race->results as $result)
                     <tr>
                         <td>{{ $result->grid }}</td>
-                        <td>{{ $result->position }}</td>
+                        <td>
+                            @if ($result->position === null)
+                                RETIRED
+                            @else
+                                {{ $result->position }}
+                            @endif
+                        </td>
                         <td>{{ $result->driver->fullName() }}</td>
                         <td>{{ $result->constructor->name }}</td>
                         <td>{{ $result->number  }}</td>

@@ -20,6 +20,7 @@ class Race extends Model
 
     public function raceName()
     {
-        return "{$this->year} {$this->name}";
+        $name = strtoupper($this->name);
+        return "{$this->year} {$name}";
     }
 }
