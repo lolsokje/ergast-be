@@ -18,9 +18,19 @@ class Race extends Model
         return $this->hasMany(Result::class, 'raceId');
     }
 
-    public function raceName()
+    public function driverStandings()
     {
-        $name = strtoupper($this->name);
+        return $this->hasMany(DriverStanding::class, 'raceId')->orderBy('points', 'DESC');
+    }
+
+    public function constructorStandings()
+    {
+        return $this->hasMany(ConstructorStanding::class, 'raceId')->orderBy('points', 'DESC');
+    }
+
+    public function raceName(bool $upper = true)
+    {
+        $name = $upper ? strtoupper($this->name) : $this->name;
         return "{$this->year} {$name}";
     }
 }

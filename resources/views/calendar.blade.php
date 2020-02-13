@@ -20,7 +20,7 @@
                         <td>{{ $race->name }}</td>
                         <td>{{ date('d/m/Y', strtotime($race->date)) }}</td>
                         <td><a href="{{ $race->url }}">Wikipedia</a></td>
-                        <td><a href="{{ route('race_details', ['raceId' => $race->raceId]) }}">Details</a></td>
+                        <td><a href="{{ route('race_details', ['race' => $race->raceId]) }}">Details</a></td>
                     </tr>
                 @endforeach
             </table>

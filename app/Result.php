@@ -27,4 +27,22 @@ class Result extends Model
     {
         return $this->belongsTo(Status::class, 'statusId', 'statusId');
     }
+
+    public function finishingPosition()
+    {
+        if ($this->position) {
+            return $this->position;
+        } else {
+            switch ($this->positionText) {
+                case 'R':
+                    return 'RETIRED';
+                case 'N':
+                    return 'NOT CLASSIFIED';
+                case 'F':
+                    return 'FAILED TO QUALIFY';
+                case 'W':
+                    return 'WITHDRAWN';
+            }
+        }
+    }
 }

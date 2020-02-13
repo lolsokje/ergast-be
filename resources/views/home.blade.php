@@ -2,9 +2,10 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-        </div>
-    </div>
+    <ul>
+        <li><a href="{{ route('seasons') }}">Seasons</a></li>
+        <li><a href="{{ route('races') }}">Races</a></li>
+        <li><a href="{{ route('drivers') }}">Drivers</a></li>
+    </ul>
 </div>
 @endsection

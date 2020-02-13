@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Driver;
 use App\Race;
+use App\Result;
+use App\Season;
 use Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
 {
     /**
-     * Show the application dashboard.
-     *
      * @return Renderable
      */
     public function index()
@@ -17,7 +18,38 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function calendar(int $year): Renderable
+    /**
+     * @return Renderable
+     */
+    public function races(): Renderable
+    {
+        $races = Race::orderBy('year', 'DESC')->orderBy('round', 'DESC')->paginate(25);
+
+        return view('races', ['races' => $races]);
+    }
+
+    /**
+     * @param Race $race
+     * @return Renderable
+     */
+    public function raceDetails(Race $race): Renderable
+    {
+        return view('race-details', ['race' => $race]);
+    }
+
+    /**
+     * @return Renderable
+     */
+    public function seasons(): Renderable
+    {
+        return view('seasons', ['seasons' => Season::orderBy('year', 'DESC')->get()]);
+    }
+
+    /**
+     * @param int $year
+     * @return Renderable
+     */
+    public function showSeason(int $year): Renderable
     {
         $races = Race::where('year', $year)->get();
 
@@ -27,8 +59,30 @@ class HomeController extends Controller
         ]);
     }
 
-    public function raceDetails(Race $race): Renderable
+    /**
+     * @return Renderable
+     */
+    public function drivers(): Renderable
     {
-        return view('race-details', ['race' => $race]);
+        $drivers = Driver::orderBy('dob', 'DESC')->paginate(25);
+        return view('drivers', ['drivers' => $drivers]);
+    }
+
+    /**
+     * @param Driver $driver
+     * @return Renderable
+     */
+    public function driverDetails(Driver $driver): Renderable
+    {
+        $results = Result::where('driverId', $driver->driverId)
+            ->join('races', 'races.raceId', '=', 'results.raceId')
+            ->orderBy('races.year', 'DESC')
+            ->orderBy('races.round', 'DESC')
+            ->paginate(20);
+
+        return view('driver-details', [
+            'driver' => $driver,
+            'results' => $results
+        ]);
     }
 }

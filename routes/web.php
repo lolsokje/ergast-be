@@ -13,6 +13,14 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/calendar/{year}', 'HomeController@calendar');
+Route::get('/races', 'HomeController@races')->name('races');
 
 Route::get('/race/{race}', 'HomeController@raceDetails')->name('race_details');
+
+Route::get('/seasons', 'HomeController@seasons')->name('seasons');
+
+Route::get('/seasons/{year}', 'HomeController@showSeason')->name('show_season');
+
+Route::get('/drivers', 'HomeController@drivers')->name('drivers');
+
+Route::get('/drivers/{driver}', 'HomeController@driverDetails')->name('driver_details');
