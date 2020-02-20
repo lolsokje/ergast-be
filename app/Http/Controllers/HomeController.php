@@ -7,6 +7,8 @@ use App\Race;
 use App\Result;
 use App\Season;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Facades\DB;
+use PDO;
 
 class HomeController extends Controller
 {
@@ -65,7 +67,14 @@ class HomeController extends Controller
     public function drivers(): Renderable
     {
         $drivers = Driver::orderBy('dob', 'DESC')->paginate(25);
-        return view('drivers', ['drivers' => $drivers]);
+        $today = date('Y-m-d');
+
+        $birthdays = Driver::whereRaw("DAY(dob) = DAY('{$today}') AND MONTH(dob) = MONTH('{$today}')")->get();
+
+        return view('drivers', [
+            'drivers' => $drivers,
+            'birthdays' => $birthdays
+        ]);
     }
 
     /**

@@ -21,7 +21,7 @@
                         @foreach ($race->qualifying as $qualy)
                             <tr>
                                 <td>{{ $qualy->position }}</td>
-                                <td>{{ $qualy->driver->fullName() }}</td>
+                                <td><a href="{{ route('driver_details', ['driver' => $qualy->driver->driverId]) }}">{{ $qualy->driver->fullName() }}</a></td>
                                 <td>{{ $qualy->constructor->name }}</td>
                                 <td>{{ $qualy->driver->number }}</td>
                                 <td>{{ $qualy->q1 }}</td>
@@ -52,7 +52,7 @@
                     <tr>
                         <td>{{ $result->grid }}</td>
                         <td>{{ $result->finishingPosition() }}</td>
-                        <td>{{ $result->driver->fullName() }}</td>
+                        <td><a href="{{ route('driver_details', ['driver' => $result->driver->driverId]) }}">{{ $result->driver->fullName() }}</a></td>
                         <td>{{ $result->constructor->name }}</td>
                         <td>{{ $result->number  }}</td>
                         <td>

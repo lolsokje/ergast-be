@@ -2,7 +2,17 @@
 <?php /** @var \App\Result $result */ ?>
 @section('content')
     <div class="container">
-        <h2>{{ $driver->fullName() }} | <span class="small">{{ $results->total() }} races, showing {{ count($results) }}</span></h2>
+        <h2><a href="{{ $driver->url }}" target="_blank">{{ $driver->fullName() }}</a> | <span class="small">{{ $results->total() }} races, showing {{ count($results) }}</span></h2>
+        <div class="card mb-3" style="width:35%">
+            <div class="card-header">
+                Career stats
+            </div>
+            <ul class="list-group list-group-flush">
+                @foreach ($driver->stats() as $stat)
+                    <li class="list-group-item">{{ $stat['amount'] }} {{ $stat['label'] }}</li>
+                @endforeach
+            </ul>
+        </div>
         {{ $results->links() }}
         <div class="col-md-6">
             <table class="table">

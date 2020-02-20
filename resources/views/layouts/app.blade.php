@@ -50,6 +50,14 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="footer fixed-bottom">
+            <div class="container">
+                <span class="text-muted">
+                    Made possible thanks to <a href="https://ergast.com/mrd/" target="_blank">Ergast's Developer API</a>.
+                </span>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

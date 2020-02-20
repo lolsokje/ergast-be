@@ -2,6 +2,17 @@
 
 @section('content')
     <div class="container">
+        <h3>Today's birthdays:</h3>
+        <ul>
+            @foreach ($birthdays as $driver)
+                <li>
+                    <a href="{{ route('driver_details', ['driver' => $driver->driverId]) }}">
+                        {{ $driver->fullName() }}
+                    </a> (age {{ $driver->age(true) }})
+                </li>
+            @endforeach
+        </ul>
+
         <table class="table">
             <thead>
             <tr>
