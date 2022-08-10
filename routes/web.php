@@ -11,16 +11,19 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/races', 'HomeController@races')->name('races');
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/race/{race}', 'HomeController@raceDetails')->name('race_details');
+Route::get('/races', [HomeController::class, 'races'])->name('races');
 
-Route::get('/seasons', 'HomeController@seasons')->name('seasons');
+Route::get('/race/{race}', [HomeController::class, 'raceDetails'])->name('race_details');
 
-Route::get('/seasons/{year}', 'HomeController@showSeason')->name('show_season');
+Route::get('/seasons', [HomeController::class, 'seasons'])->name('seasons');
 
-Route::get('/drivers', 'HomeController@drivers')->name('drivers');
+Route::get('/seasons/{year}', [HomeController::class, 'showSeason'])->name('show_season');
 
-Route::get('/drivers/{driver}', 'HomeController@driverDetails')->name('driver_details');
+Route::get('/drivers', [HomeController::class, 'drivers'])->name('drivers');
+
+Route::get('/drivers/{driver}', [HomeController::class, 'driverDetails'])->name('driver_details');
