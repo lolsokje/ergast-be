@@ -7,11 +7,25 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class Import
 {
-    private string $table = '';
+    private string $table;
+    private $file;
 
-    protected function performImport(string $table, array $data): void
+    /**
+     * @throws FileNotFoundException
+     */
+    public function handle(string $table, array $columnMapping): void
     {
         $this->table = $table;
+        $this->getFile();
+
+        $headers = $this->parseHeaders(fgetcsv($this->file), $columnMapping);
+        $data = $this->combineData($headers);
+
+        $this->performImport($data);
+    }
+
+    protected function performImport(array $data): void
+    {
         foreach ($data as $row) {
             $this->insertRow($row);
         }
@@ -39,30 +53,31 @@ class Import
     /**
      * @throws FileNotFoundException
      */
-    protected function getFile()
+    protected function getFile(): void
     {
-        $path = storage_path('app/imports/drivers.csv');
+        $path = storage_path("app/imports/$this->table.csv");
         if (!file_exists($path)) {
-            throw new FileNotFoundException("Drivers CSV file not found");
+            $tableName = ucfirst($this->table);
+            throw new FileNotFoundException("$tableName CSV file not found");
         }
 
-        return fopen($path, 'r');
+        $this->file = fopen($path, 'r');
     }
 
-    protected function combineData($file, array $headers): array
+    protected function combineData(array $headers): array
     {
         $data = [];
-        while (($line = fgetcsv($file)) !== false) {
+        while (($line = fgetcsv($this->file)) !== false) {
             $data[] = array_combine($headers, $this->removeNullValues($line));
         }
 
         return $data;
     }
 
-    protected function parseHeaders(array $fileHeaders): array
+    protected function parseHeaders(array $fileHeaders, array $columnMapping): array
     {
         foreach ($fileHeaders as $key => $header) {
-            $fileHeaders[$key] = $this->columnMapping[$header] ?? $header;
+            $fileHeaders[$key] = $columnMapping[$header] ?? $header;
         }
 
         return $fileHeaders;

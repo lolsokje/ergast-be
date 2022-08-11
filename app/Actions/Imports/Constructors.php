@@ -2,32 +2,31 @@
 
 namespace App\Actions\Imports;
 
-use App\Driver;
+use App\Constructor;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class Drivers
+class Constructors
 {
     use AsAction;
 
-    public string $commandSignature = 'imports:drivers';
+    public string $commandSignature = 'imports:constructors';
+
+    protected string $table = 'constructors';
 
     protected array $columnMapping = [
-        'driverId' => 'id',
-        'driverRef' => 'driver_ref',
-        'forename' => 'given_name',
+        'constructorId' => 'id',
+        'constructorRef' => 'constructor_ref',
     ];
-
-    protected string $table = 'drivers';
 
     /**
      * @throws FileNotFoundException
      */
     public function handle(): void
     {
-        Driver::truncate();
+        Constructor::truncate();
         (new Import())->handle($this->table, $this->columnMapping);
     }
 
