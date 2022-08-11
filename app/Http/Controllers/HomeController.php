@@ -8,6 +8,7 @@ use App\Result;
 use App\Season;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
 use PDO;
 
 class HomeController extends Controller
@@ -17,7 +18,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return Inertia::render('Index');
     }
 
     /**

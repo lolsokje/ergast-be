@@ -1,0 +1,87 @@
+@import '../components/progress_bar.scss';
+
+@mixin primary-button {
+  background-color: $background-colour;
+  border-color: $primary;
+  color: $primary;
+
+  &:hover {
+    background-color: $primary;
+    border-color: $background-colour;
+    color: $background-colour;
+  }
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  color: $text-colour;
+  background-color: $background-colour;
+}
+
+a {
+  color: $primary;
+}
+
+table {
+  th, td {
+    color: $text-colour;
+  }
+}
+
+.card {
+  background-color: $accent;
+  border: none;
+
+  .card-header {
+    background-color: $accent;
+    border-bottom: none;
+  }
+}
+
+.pagination {
+  .page-item {
+    .page-link {
+      background-color: $accent;
+      border-color: $background-colour;
+      color: $primary;
+    }
+  }
+
+  .disabled {
+    &:hover {
+      cursor: not-allowed;
+    }
+
+    .page-link {
+      background-color: darken($accent, 10%);
+    }
+  }
+
+  .active {
+    .page-link {
+      @include primary-button;
+    }
+  }
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.btn-primary {
+  @include primary-button;
+}
+
+nav {
+  background-color: $accent;
+}

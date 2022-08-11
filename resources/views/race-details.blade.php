@@ -1,5 +1,6 @@
-@extends('layouts.app')
-<?php /** @var \App\Result $result */ ?>
+@extends('app')
+<?php
+/** @var \App\Result $result */ ?>
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -18,17 +19,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach ($race->qualifying as $qualy)
-                            <tr>
-                                <td>{{ $qualy->position }}</td>
-                                <td><a href="{{ route('driver_details', ['driver' => $qualy->driver->driverId]) }}">{{ $qualy->driver->fullName() }}</a></td>
-                                <td>{{ $qualy->constructor->name }}</td>
-                                <td>{{ $qualy->driver->number }}</td>
-                                <td>{{ $qualy->q1 }}</td>
-                                <td>{{ $qualy->q2 }}</td>
-                                <td>{{ $qualy->q3 }}</td>
-                            </tr>
-                        @endforeach
+                    @foreach ($race->qualifying as $qualy)
+                        <tr>
+                            <td>{{ $qualy->position }}</td>
+                            <td>
+                                <a href="{{ route('driver_details', ['driver' => $qualy->driver->driverId]) }}">{{ $qualy->driver->fullName() }}</a>
+                            </td>
+                            <td>{{ $qualy->constructor->name }}</td>
+                            <td>{{ $qualy->driver->number }}</td>
+                            <td>{{ $qualy->q1 }}</td>
+                            <td>{{ $qualy->q2 }}</td>
+                            <td>{{ $qualy->q3 }}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             @endif
@@ -52,7 +55,9 @@
                     <tr>
                         <td>{{ $result->grid }}</td>
                         <td>{{ $result->finishingPosition() }}</td>
-                        <td><a href="{{ route('driver_details', ['driver' => $result->driver->driverId]) }}">{{ $result->driver->fullName() }}</a></td>
+                        <td>
+                            <a href="{{ route('driver_details', ['driver' => $result->driver->driverId]) }}">{{ $result->driver->fullName() }}</a>
+                        </td>
                         <td>{{ $result->constructor->name }}</td>
                         <td>{{ $result->number  }}</td>
                         <td>

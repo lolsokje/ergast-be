@@ -1,8 +1,10 @@
-@extends('layouts.app')
-<?php /** @var \App\Result $result */ ?>
+@extends('app')
+<?php
+/** @var \App\Result $result */ ?>
 @section('content')
     <div class="container">
-        <h2><a href="{{ $driver->url }}" target="_blank">{{ $driver->fullName() }}</a> | <span class="small">{{ $results->total() }} races, showing {{ count($results) }}</span></h2>
+        <h2><a href="{{ $driver->url }}" target="_blank">{{ $driver->fullName() }}</a> | <span class="small">{{ $results->total() }} races, showing {{ count($results) }}</span>
+        </h2>
         <div class="card mb-3" style="width:35%">
             <div class="card-header">
                 Career stats

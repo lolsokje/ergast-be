@@ -5,4 +5,18 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap';
+
+* {
+  transition: all 0.15s ease-in-out;
+}
+
+.theme {
+  &.dark {
+    @import 'themes/dark';
+  }
+
+  &.light {
+    @import 'themes/light';
+  }
+}
