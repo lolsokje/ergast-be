@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Driver extends Model
 {
-    protected $primaryKey = 'driverId';
-
     protected $casts = [
         'dob' => 'date:F dS, Y',
     ];
@@ -21,7 +19,7 @@ class Driver extends Model
 
     public function fullName(): Attribute
     {
-        return Attribute::get(fn () => "$this->forename $this->surname");
+        return Attribute::get(fn () => "$this->given_name $this->surname");
     }
 
     public function age($getYearOnly = false): Attribute
