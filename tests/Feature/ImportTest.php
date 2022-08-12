@@ -5,6 +5,7 @@ use App\Models\Constructor;
 use App\Models\Driver;
 use App\Models\QualifyingResult;
 use App\Models\Race;
+use App\Models\RaceResult;
 use App\Models\Season;
 use App\Models\Status;
 use function PHPUnit\Framework\assertGreaterThan;
@@ -51,6 +52,13 @@ it('imports qualifying results', function () {
     Artisan::call('imports:qualifying_results');
 
     assertGreaterThan(0, QualifyingResult::count());
+});
+
+it('imports race results', function () {
+    callPrerequisiteActions(['seasons', 'circuits', 'races', 'drivers', 'constructors', 'statuses']);
+    Artisan::call('imports:race_results');
+
+    assertGreaterThan(0, RaceResult::count());
 });
 
 function callPrerequisiteActions(array $actions): void
