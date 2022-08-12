@@ -41,13 +41,38 @@ class Driver extends Model
         return Attribute::get(fn () => "$yearText, $monthText, $dayText");
     }
 
-    public function results(): HasMany
-    {
-        return $this->hasMany(Result::class, 'driverId');
-    }
-
     public function stats(): Attribute
     {
         return Attribute::get(fn () => Stats::run($this));
+    }
+
+    public function qualifyingResults(): HasMany
+    {
+        return $this->hasMany(QualifyingResult::class);
+    }
+
+    public function raceResults(): HasMany
+    {
+        return $this->hasMany(RaceResult::class);
+    }
+
+    public function sprintResults(): HasMany
+    {
+        return $this->hasMany(SprintResult::class);
+    }
+
+    public function standings(): HasMany
+    {
+        return $this->hasMany(DriverStanding::class);
+    }
+
+    public function pitstops(): HasMany
+    {
+        return $this->hasMany(Pitstop::class);
+    }
+
+    public function laptimes(): HasMany
+    {
+        return $this->hasMany(Laptime::class);
     }
 }

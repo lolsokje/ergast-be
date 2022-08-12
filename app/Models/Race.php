@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Race extends Model
 {
@@ -17,25 +18,46 @@ class Race extends Model
         return $this->belongsTo(Season::class);
     }
 
-//    public function qualifying()
-//    {
-//        return $this->hasMany(Qualifying::class, 'raceId');
-//    }
-//
-//    public function results()
-//    {
-//        return $this->hasMany(Result::class, 'raceId');
-//    }
-//
-//    public function driverStandings()
-//    {
-//        return $this->hasMany(DriverStanding::class, 'raceId')->orderBy('points', 'DESC');
-//    }
-//
-//    public function constructorStandings()
-//    {
-//        return $this->hasMany(ConstructorStanding::class, 'raceId')->orderBy('points', 'DESC');
-//    }
+    public function qualifingResults(): HasMany
+    {
+        return $this->hasMany(QualifyingResult::class);
+    }
+
+    public function results(): HasMany
+    {
+        return $this->hasMany(RaceResult::class);
+    }
+
+    public function sprintResults(): HasMany
+    {
+        return $this->hasMany(SprintResult::class);
+    }
+
+    public function pitstops(): HasMany
+    {
+        return $this->hasMany(Pitstop::class);
+    }
+
+    public function laptimes(): HasMany
+    {
+        return $this->hasMany(Laptime::class);
+    }
+
+    public function driverStandings(): HasMany
+    {
+        return $this->hasMany(DriverStanding::class);
+    }
+
+    public function constructorStandings(): HasMany
+    {
+        return $this->hasMany(ConstructorStanding::class);
+    }
+
+    public function constructorResults(): HasMany
+    {
+        return $this->hasMany(ConstructorResult::class);
+    }
+
 //
 //    public function raceName(bool $upper = true)
 //    {
