@@ -2,6 +2,7 @@
 
 use App\Constructor;
 use App\Driver;
+use App\Models\Circuit;
 use App\Season;
 use function PHPUnit\Framework\assertGreaterThan;
 
@@ -21,4 +22,10 @@ it('imports seasons', function () {
     Artisan::call('imports:seasons');
 
     assertGreaterThan(0, Season::count());
+});
+
+it('imports circuits', function () {
+    Artisan::call('imports:circuits');
+
+    assertGreaterThan(0, Circuit::count());
 });
