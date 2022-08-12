@@ -6,6 +6,7 @@ use App\Models\ConstructorResult;
 use App\Models\ConstructorStanding;
 use App\Models\Driver;
 use App\Models\DriverStanding;
+use App\Models\Laptime;
 use App\Models\Pitstop;
 use App\Models\QualifyingResult;
 use App\Models\Race;
@@ -78,6 +79,13 @@ it('imports pitstops', function () {
     Artisan::call('imports:pitstops');
 
     assertGreaterThan(0, Pitstop::count());
+});
+
+it('imports laptimes', function () {
+    callPrerequisiteActions(['seasons', 'circuits', 'races', 'drivers', 'constructors']);
+    Artisan::call('imports:laptimes');
+
+    assertGreaterThan(0, Laptime::count());
 });
 
 it('imports driver standings', function () {
