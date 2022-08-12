@@ -2,6 +2,7 @@
 
 use App\Models\Circuit;
 use App\Models\Constructor;
+use App\Models\ConstructorResult;
 use App\Models\ConstructorStanding;
 use App\Models\Driver;
 use App\Models\DriverStanding;
@@ -64,17 +65,24 @@ it('imports race results', function () {
 });
 
 it('imports driver standings', function () {
-    callPrerequisiteActions(['seasons', 'circuits', 'races', 'drivers', 'constructors', 'statuses', 'race_results']);
+    callPrerequisiteActions(['seasons', 'circuits', 'races', 'drivers', 'constructors']);
     Artisan::call('imports:driver_standings');
 
     assertGreaterThan(0, DriverStanding::count());
 });
 
 it('imports constructor standings', function () {
-    callPrerequisiteActions(['seasons', 'circuits', 'races', 'drivers', 'constructors', 'statuses', 'race_results']);
+    callPrerequisiteActions(['seasons', 'circuits', 'races', 'drivers', 'constructors']);
     Artisan::call('imports:constructor_standings');
 
     assertGreaterThan(0, ConstructorStanding::count());
+});
+
+it('imports constructor results', function () {
+    callPrerequisiteActions(['seasons', 'circuits', 'races', 'drivers', 'constructors']);
+    Artisan::call('imports:constructor_results');
+
+    assertGreaterThan(0, ConstructorResult::count());
 });
 
 function callPrerequisiteActions(array $actions): void
