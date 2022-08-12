@@ -14,18 +14,20 @@
     </div>
 </template>
 
-<script setup>
-import { onMounted, ref, watch } from 'vue';
+<script setup lang="ts">
+import {onMounted, Ref, ref, watch} from 'vue';
 
-const currentTheme = ref(null);
+const currentTheme: Ref<string> = ref('');
 
-const switchTheme = (theme) => {
+const switchTheme = (theme: string) => {
     currentTheme.value = theme;
 };
 
-watch(currentTheme, (newTheme, oldTheme) => {
-    document.querySelector('html.theme').classList.remove(oldTheme);
-    document.querySelector('html.theme').classList.add(newTheme);
+watch(currentTheme, (newTheme: string, oldTheme: string) => {
+    if (oldTheme !== '') {
+        document.querySelector('html.theme')?.classList.remove(oldTheme);
+    }
+    document.querySelector('html.theme')?.classList.add(newTheme);
 
     localStorage.setItem('theme', newTheme);
 });
@@ -35,10 +37,8 @@ onMounted(() => {
 });
 </script>
 
-<script>
-export default {
-    name: "ThemeSwitcher",
-};
+<script lang="ts">
+export default {name: "ThemeSwitcher",};
 </script>
 
 <style scoped>

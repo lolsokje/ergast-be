@@ -4,12 +4,14 @@
     </div>
 </template>
 
-<script setup>
-defineProps({
+<script setup lang="ts">
+interface Props {
     show: Boolean,
-});
+}
+
+defineProps<Props>();
 </script>
 
-<script>
-export default { name: "ProgressBar" };
+<script lang="ts">
+export default {name: "ProgressBar"};
 </script>

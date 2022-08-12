@@ -18,11 +18,11 @@
     </main>
 </template>
 
-<script setup>
-import ProgressBar from '../Components/ProgressBar';
-import { api } from '../Stores/api';
-import ThemeSwitcher from '../Components/ThemeSwitcher';</script>
+<script setup lang="ts">
+import ProgressBar from '../Components/ProgressBar.vue';
+import {api} from "../Stores/api";
+import ThemeSwitcher from '../Components/ThemeSwitcher.vue';</script>
 
-<script>
-export default { name: 'Default' };
+<script lang="ts">
+export default {name: 'Default'};
 </script>

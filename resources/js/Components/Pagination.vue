@@ -10,15 +10,19 @@
     </ul>
 </template>
 
-<script setup>
-defineProps({
-    disabled: Boolean,
-    links: Array,
-});
+<script setup lang="ts">
+import MetaLink from "../Interfaces/MetaLink";
 
-const emit = defineEmits([ 'fetch' ]);
+interface Props {
+    disabled: Boolean,
+    links?: Array<MetaLink>,
+}
+
+defineProps<Props>();
+
+const emit = defineEmits(['fetch']);
 </script>
 
-<script>
-export default { name: "Pagination" };
+<script lang="ts">
+export default {name: "Pagination"};
 </script>

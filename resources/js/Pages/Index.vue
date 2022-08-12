@@ -29,14 +29,19 @@
     </div>
 </template>
 
-<script setup>
-import { onMounted, ref } from 'vue';
-import { api } from '../Stores/api.js';
-import { ucFirst } from '../Utils/firstLetterUppercase';
+<script setup lang="ts">
+import {onMounted, Ref, ref} from 'vue';
+import {api} from '../Stores/api';
+import {ucFirst} from '../Utils/firstLetterUppercase';
+import Driver from "../Interfaces/Driver";
 
-const birthdays = ref([]);
+const birthdays: Ref<Array<Driver>> = ref([]);
 
 onMounted(async () => {
     birthdays.value = await api.get('birthdays');
 });
+</script>
+
+<script lang="ts">
+export default {name: 'Index'};
 </script>
