@@ -1,10 +1,10 @@
 <?php
 
-use App\Constructor;
-use App\Driver;
 use App\Models\Circuit;
-use App\Race;
-use App\Season;
+use App\Models\Constructor;
+use App\Models\Driver;
+use App\Models\Race;
+use App\Models\Season;
 use function PHPUnit\Framework\assertGreaterThan;
 
 it('imports drivers', function () {

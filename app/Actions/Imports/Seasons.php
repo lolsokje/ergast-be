@@ -2,7 +2,7 @@
 
 namespace App\Actions\Imports;
 
-use App\Season;
+use App\Models\Season;
 use Exception;
 use Illuminate\Console\Command;
 use Lorisleiva\Actions\Concerns\AsAction;

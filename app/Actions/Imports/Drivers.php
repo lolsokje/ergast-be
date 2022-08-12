@@ -2,7 +2,7 @@
 
 namespace App\Actions\Imports;
 
-use App\Driver;
+use App\Models\Driver;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;

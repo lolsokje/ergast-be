@@ -1,6 +1,6 @@
 @extends('app')
 <?php
-/** @var \App\Result $result */ ?>
+/** @var \App\Models\Result $result */ ?>
 @section('content')
     <div class="container">
         <div class="row justify-content-center">

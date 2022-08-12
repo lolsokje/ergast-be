@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Driver;
-use App\Race;
-use App\Result;
-use App\Season;
+use App\Models\Driver;
+use App\Models\Race;
+use App\Models\Result;
+use App\Models\Season;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
-use PDO;
 
 class HomeController extends Controller
 {
@@ -58,7 +56,7 @@ class HomeController extends Controller
 
         return view('calendar', [
             'races' => $races,
-            'year' => $year
+            'year' => $year,
         ]);
     }
 
@@ -74,7 +72,7 @@ class HomeController extends Controller
 
         return view('drivers', [
             'drivers' => $drivers,
-            'birthdays' => $birthdays
+            'birthdays' => $birthdays,
         ]);
     }
 
@@ -92,7 +90,7 @@ class HomeController extends Controller
 
         return view('driver-details', [
             'driver' => $driver,
-            'results' => $results
+            'results' => $results,
         ]);
     }
 }

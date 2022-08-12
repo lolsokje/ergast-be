@@ -2,7 +2,7 @@
 
 namespace App\Actions\Imports;
 
-use App\Race;
+use App\Models\Race;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;

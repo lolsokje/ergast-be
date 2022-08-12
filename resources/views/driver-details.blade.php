@@ -1,6 +1,6 @@
 @extends('app')
 <?php
-/** @var \App\Result $result */ ?>
+/** @var \App\Models\Result $result */ ?>
 @section('content')
     <div class="container">
         <h2><a href="{{ $driver->url }}" target="_blank">{{ $driver->fullName() }}</a> | <span class="small">{{ $results->total() }} races, showing {{ count($results) }}</span>

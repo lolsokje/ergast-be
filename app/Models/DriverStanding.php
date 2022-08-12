@@ -1,13 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Qualifying extends Model
+class DriverStanding extends Model
 {
-    protected $primaryKey = 'qualifyId';
-    protected $table = 'qualifying';
+    protected $primaryKey = 'driverStandingsId';
+
+    protected $table = 'driverStandings';
 
     public function race()
     {
@@ -17,10 +18,5 @@ class Qualifying extends Model
     public function driver()
     {
         return $this->belongsTo(Driver::class, 'driverId');
-    }
-
-    public function constructor()
-    {
-        return $this->belongsTo(Constructor::class, 'constructorId');
     }
 }

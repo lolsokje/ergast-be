@@ -2,8 +2,8 @@
 
 namespace App\Actions\Drivers;
 
-use App\Driver;
 use App\Http\Resources\DriverCollection;
+use App\Models\Driver;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 class Index

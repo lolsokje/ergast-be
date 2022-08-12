@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Actions\Drivers\Stats;
 use Illuminate\Database\Eloquent\Casts\Attribute;

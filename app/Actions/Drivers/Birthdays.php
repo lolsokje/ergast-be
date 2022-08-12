@@ -2,8 +2,8 @@
 
 namespace App\Actions\Drivers;
 
-use App\Driver;
 use App\Http\Resources\DriverResource;
+use App\Models\Driver;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Lorisleiva\Actions\Concerns\AsAction;

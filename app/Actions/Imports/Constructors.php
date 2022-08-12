@@ -2,7 +2,7 @@
 
 namespace App\Actions\Imports;
 
-use App\Constructor;
+use App\Models\Constructor;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
