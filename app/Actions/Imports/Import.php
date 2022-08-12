@@ -8,14 +8,16 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 class Import
 {
     private string $table;
+    private string $fileName;
     private $file;
 
     /**
      * @throws FileNotFoundException
      */
-    public function handle(string $table, array $columnMapping): void
+    public function handle(string $table, array $columnMapping, ?string $fileName = null): void
     {
         $this->table = $table;
+        $this->fileName = $fileName ?? $table;
         $this->getFile();
 
         $headers = $this->parseHeaders(fgetcsv($this->file), $columnMapping);
@@ -55,7 +57,7 @@ class Import
      */
     protected function getFile(): void
     {
-        $path = storage_path("app/imports/$this->table.csv");
+        $path = storage_path("app/imports/$this->fileName.csv");
         if (!file_exists($path)) {
             $tableName = ucfirst($this->table);
             throw new FileNotFoundException("$tableName CSV file not found");

@@ -5,6 +5,7 @@ use App\Models\Constructor;
 use App\Models\Driver;
 use App\Models\Race;
 use App\Models\Season;
+use App\Models\Status;
 use function PHPUnit\Framework\assertGreaterThan;
 
 it('imports drivers', function () {
@@ -29,6 +30,12 @@ it('imports circuits', function () {
     Artisan::call('imports:circuits');
 
     assertGreaterThan(0, Circuit::count());
+});
+
+it('imports statuses', function () {
+    Artisan::call('imports:statuses');
+
+    assertGreaterThan(0, Status::count());
 });
 
 it('imports races', function () {
