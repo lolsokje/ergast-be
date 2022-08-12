@@ -9,9 +9,9 @@ class Stats
 {
     use AsAction;
 
-    public function handle(Driver $driver)
+    public function handle(Driver $driver): array
     {
-        $results = $driver->results;
+        $results = $driver->raceResults;
 
         $entries = $results->count();
         $poles = $results->where('grid', 1)->count();

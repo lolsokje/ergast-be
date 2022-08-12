@@ -14,7 +14,7 @@ class Index
     {
         $page = request()->get('page') ?? 1;
         $drivers = Driver::query()
-            ->with('results')
+            ->with('raceResults')
             ->orderBy('dob', 'DESC');
 
         $paginated = $drivers->paginate(perPage: 20, page: $page);
