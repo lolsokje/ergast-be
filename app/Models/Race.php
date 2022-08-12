@@ -3,9 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Race extends Model
 {
+    public function circuit(): BelongsTo
+    {
+        return $this->belongsTo(Circuit::class);
+    }
+
+    public function season(): BelongsTo
+    {
+        return $this->belongsTo(Season::class);
+    }
+
 //    public function qualifying()
 //    {
 //        return $this->hasMany(Qualifying::class, 'raceId');
