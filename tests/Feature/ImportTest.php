@@ -3,6 +3,7 @@
 use App\Models\Circuit;
 use App\Models\Constructor;
 use App\Models\Driver;
+use App\Models\DriverStanding;
 use App\Models\QualifyingResult;
 use App\Models\Race;
 use App\Models\RaceResult;
@@ -59,6 +60,13 @@ it('imports race results', function () {
     Artisan::call('imports:race_results');
 
     assertGreaterThan(0, RaceResult::count());
+});
+
+it('imports driver standings', function () {
+    callPrerequisiteActions(['seasons', 'circuits', 'races', 'drivers', 'constructors', 'statuses', 'race_results']);
+    Artisan::call('imports:driver_standings');
+
+    assertGreaterThan(0, DriverStanding::count());
 });
 
 function callPrerequisiteActions(array $actions): void
