@@ -13,17 +13,20 @@
         <tr v-for="driver in drivers" :key="driver.id">
             <td>{{ driver.full_name }}</td>
             <td>{{ driver.dob }}</td>
-            <td>details</td>
+            <td>
+                <InertiaLink :href="`drivers/${driver.id}`">
+                    details
+                </InertiaLink>
+            </td>
         </tr>
         </tbody>
     </table>
 </template>
 
 <script setup lang="ts">
-import {onMounted, Ref, ref} from 'vue';
-import {api} from '../../Stores/api';
+import { onMounted, Ref, ref } from 'vue';
+import { api } from '../../Stores/api';
 import Pagination from "../../Components/Pagination.vue";
-import MetaLink from "../../Interfaces/MetaLink";
 import Meta from "../../Interfaces/Meta";
 import Driver from "../../Interfaces/Driver";
 
@@ -36,16 +39,6 @@ const fetchDrivers = async (link: string | null = null) => {
 
     drivers.value = response.data;
     meta.value = response.meta;
-
-    meta.value?.links.forEach((link: MetaLink) => {
-        if (link.label.includes('Previous')) {
-            link.label = 'Previous';
-        }
-
-        if (link.label.includes('Next')) {
-            link.label = 'Next';
-        }
-    });
 };
 
 onMounted(async () => {
@@ -54,5 +47,5 @@ onMounted(async () => {
 </script>
 
 <script lang="ts">
-export default {name: "DriverIndex"};
+export default { name: "DriverIndex" };
 </script>

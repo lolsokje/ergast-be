@@ -6,7 +6,7 @@
                     <InertiaLink href="/" class="nav-link">Home</InertiaLink>
                 </li>
                 <li class="nav-item">
-                    <InertiaLink href="drivers" class="nav-link">Drivers</InertiaLink>
+                    <InertiaLink href="/drivers" class="nav-link">Drivers</InertiaLink>
                 </li>
             </ul>
         </div>
@@ -20,9 +20,9 @@
 
 <script setup lang="ts">
 import ProgressBar from '../Components/ProgressBar.vue';
-import {api} from "../Stores/api";
+import { api } from "../Stores/api";
 import ThemeSwitcher from '../Components/ThemeSwitcher.vue';</script>
 
 <script lang="ts">
-export default {name: 'Default'};
+export default { name: 'Default' };
 </script>

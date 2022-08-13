@@ -5,7 +5,7 @@
             :key="index"
             :class="{ 'active' : link.active, 'disabled' : link.disabled || !link.url || disabled  }"
         >
-            <button class="page-link" @click.stop="emit('fetch', link.url)">{{ link.label }}</button>
+            <button class="page-link" @click.stop="emit('fetch', link.url)" v-html="link.label"/>
         </li>
     </ul>
 </template>
@@ -18,11 +18,11 @@ interface Props {
     links?: Array<MetaLink>,
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
-const emit = defineEmits(['fetch']);
+const emit = defineEmits([ 'fetch' ]);
 </script>
 
 <script lang="ts">
-export default {name: "Pagination"};
+export default { name: "Pagination" };
 </script>

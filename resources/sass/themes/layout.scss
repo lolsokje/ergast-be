@@ -54,7 +54,13 @@ table {
       background-color: $accent;
       border-color: $background-colour;
       color: $primary;
+
+      &:hover {
+        background-color: darken($accent, 5%);
+      }
     }
+
+
   }
 
   .disabled {

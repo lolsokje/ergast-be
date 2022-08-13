@@ -12,7 +12,9 @@
                                 <h6 class="card-subtitle text-muted">{{ driver.dob }}</h6>
                             </div>
                             <div class="col-3">
-                                <a href="#" class="btn btn-primary">details</a>
+                                <InertiaLink :href="`drivers/${driver.id}`" class="btn btn-primary">
+                                    details
+                                </InertiaLink>
                             </div>
                         </div>
                         <hr>
@@ -30,18 +32,18 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, Ref, ref} from 'vue';
-import {api} from '../Stores/api';
-import {ucFirst} from '../Utils/firstLetterUppercase';
+import { onMounted, Ref, ref } from 'vue';
+import { api } from '../Stores/api';
+import { ucFirst } from '../Utils/firstLetterUppercase';
 import Driver from "../Interfaces/Driver";
 
 const birthdays: Ref<Array<Driver>> = ref([]);
 
 onMounted(async () => {
-    birthdays.value = await api.get('birthdays');
+    birthdays.value = await api.get('drivers/birthdays');
 });
 </script>
 
 <script lang="ts">
-export default {name: 'Index'};
+export default { name: 'Index' };
 </script>

@@ -11,8 +11,9 @@
 |
 */
 
+use App\Http\Controllers\Driver\Index;
+use App\Http\Controllers\Driver\Show;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ShowDriverIndexController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
@@ -25,6 +26,7 @@ Route::get('/seasons', [HomeController::class, 'seasons'])->name('seasons');
 
 Route::get('/seasons/{year}', [HomeController::class, 'showSeason'])->name('show_season');
 
-Route::get('drivers', ShowDriverIndexController::class)->name('drivers.index');
-
-Route::get('/drivers/{driver}', [HomeController::class, 'driverDetails'])->name('driver_details');
+Route::group(['prefix' => 'drivers', 'as' => 'drivers.'], function () {
+    Route::get('', Index::class)->name('index');
+    Route::get('{id}', Show::class)->name('show');
+});

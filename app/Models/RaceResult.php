@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class RaceResult extends Model
 {
@@ -23,8 +22,8 @@ class RaceResult extends Model
         return $this->belongsTo(Constructor::class);
     }
 
-    public function status(): HasOne
+    public function status(): BelongsTo
     {
-        return $this->hasOne(Status::class);
+        return $this->belongsTo(Status::class);
     }
 }

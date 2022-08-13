@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Driver;
 
+use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 
-class ShowDriverIndexController extends Controller
+class Index extends Controller
 {
     public function __invoke()
     {

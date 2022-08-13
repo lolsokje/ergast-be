@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Race extends Model
 {
+    protected $casts = [
+        'date' => 'date:F dS, Y',
+    ];
+
     public function circuit(): BelongsTo
     {
         return $this->belongsTo(Circuit::class);
